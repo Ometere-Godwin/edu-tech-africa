@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { Label } from "@/components/ui/label"
-import { Select } from "@/components/ui/select"
-import { courses } from "@/lib/courses"
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { courses } from "@/lib/courses";
 
 interface CourseFieldsProps {
   formData: {
-    courseOfInterest: string
-    referralSource: string
-  }
-  onChange: (field: string, value: string) => void
+    courseOfInterest: string;
+    referralSource: string;
+  };
+  onChange: (field: string, value: string) => void;
 }
 
 export function CourseFields({ formData, onChange }: CourseFieldsProps) {
@@ -18,36 +24,48 @@ export function CourseFields({ formData, onChange }: CourseFieldsProps) {
       <div>
         <Label htmlFor="courseOfInterest">Course of Interest</Label>
         <Select
-          id="courseOfInterest"
           value={formData.courseOfInterest}
           onValueChange={(value) => onChange("courseOfInterest", value)}
           required
         >
-          <option value="">Select Course</option>
-          {courses.map((course) => (
-            <option key={course.id} value={course.id}>
-              {course.title}
-            </option>
-          ))}
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Course" />
+          </SelectTrigger>
+          <SelectContent>
+            {courses.map((course) => (
+              <SelectItem key={course.id} value={course.id}>
+                {course.title}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
       </div>
 
       <div>
         <Label htmlFor="referralSource">How did you hear about us?</Label>
         <Select
-          id="referralSource"
           value={formData.referralSource}
           onValueChange={(value) => onChange("referralSource", value)}
           required
         >
-          <option value="">Select Source</option>
-          <option value="social">Social Media</option>
-          <option value="friend">Friend/Family</option>
-          <option value="search">Search Engine</option>
-          <option value="advertisement">Advertisement</option>
-          <option value="other">Other</option>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Source" />
+          </SelectTrigger>
+          <SelectContent>
+            {[
+              { value: "social", label: "Social Media" },
+              { value: "friend", label: "Friend/Family" },
+              { value: "search", label: "Search Engine" },
+              { value: "advertisement", label: "Advertisement" },
+              { value: "other", label: "Other" },
+            ].map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
       </div>
     </div>
-  )
+  );
 }

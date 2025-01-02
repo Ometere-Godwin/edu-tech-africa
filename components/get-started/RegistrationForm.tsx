@@ -1,14 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
-import { Select } from "../ui/select"
-import { Calendar } from "../ui/calendar"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
-import { countries } from "@/lib/countries"
-import { courses } from "@/lib/courses"
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Calendar } from "../ui/calendar";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { countries } from "@/lib/countries";
+import { courses } from "@/lib/courses";
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -22,14 +34,14 @@ export default function RegistrationForm() {
     referralSource: "",
     email: "",
     password: "",
-    confirmPassword: ""
-  })
+    confirmPassword: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission and redirect to profile completion
-    window.location.href = "/profile-completion"
-  }
+    window.location.href = "/profile-completion";
+  };
 
   return (
     <Dialog>
@@ -47,7 +59,9 @@ export default function RegistrationForm() {
               <Input
                 id="firstName"
                 value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, firstName: e.target.value })
+                }
                 required
               />
             </div>
@@ -56,7 +70,9 @@ export default function RegistrationForm() {
               <Input
                 id="surname"
                 value={formData.surname}
-                onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, surname: e.target.value })
+                }
                 required
               />
             </div>
@@ -65,15 +81,26 @@ export default function RegistrationForm() {
           <div className="space-y-2">
             <Label htmlFor="gender">Gender</Label>
             <Select
-              id="gender"
               value={formData.gender}
-              onValueChange={(value) => setFormData({ ...formData, gender: value })}
+              onValueChange={(value) =>
+                setFormData({ ...formData, gender: value })
+              }
               required
             >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Gender" />
+              </SelectTrigger>
+              <SelectContent>
+                {[
+                  { value: "male", label: "Male" },
+                  { value: "female", label: "Female" },
+                  { value: "other", label: "Other" },
+                ].map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
@@ -83,7 +110,9 @@ export default function RegistrationForm() {
               id="dateOfBirth"
               type="date"
               value={formData.dateOfBirth}
-              onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, dateOfBirth: e.target.value })
+              }
               required
             />
           </div>
@@ -92,17 +121,23 @@ export default function RegistrationForm() {
             <div className="space-y-2">
               <Label htmlFor="country">Country</Label>
               <Select
-                id="country"
                 value={formData.country}
-                onValueChange={(value) => setFormData({ ...formData, country: value })}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, country: value })
+                }
                 required
               >
-                <option value="">Select Country</option>
-                {countries.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.name}
-                  </option>
-                ))}
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Country" />
+                </SelectTrigger>
+                <SelectContent>
+                  {countries.map((country) => (
+                    <SelectItem key={country.code} value={country.code}>
+                      <span className="text-lg">{country.flag}</span>
+                      <span>{country.name}</span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
@@ -110,7 +145,9 @@ export default function RegistrationForm() {
               <Input
                 id="city"
                 value={formData.city}
-                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, city: e.target.value })
+                }
                 required
               />
             </div>
@@ -119,34 +156,50 @@ export default function RegistrationForm() {
           <div className="space-y-2">
             <Label htmlFor="courseOfInterest">Course of Interest</Label>
             <Select
-              id="courseOfInterest"
               value={formData.courseOfInterest}
-              onValueChange={(value) => setFormData({ ...formData, courseOfInterest: value })}
+              onValueChange={(value) =>
+                setFormData({ ...formData, courseOfInterest: value })
+              }
               required
             >
-              <option value="">Select Course</option>
-              {courses.map((course) => (
-                <option key={course.id} value={course.id}>
-                  {course.title}
-                </option>
-              ))}
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Course" />
+              </SelectTrigger>
+              <SelectContent>
+                {courses.map((course) => (
+                  <SelectItem key={course.id} value={course.id}>
+                    {course.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="referralSource">How did you hear about us?</Label>
             <Select
-              id="referralSource"
               value={formData.referralSource}
-              onValueChange={(value) => setFormData({ ...formData, referralSource: value })}
+              onValueChange={(value) =>
+                setFormData({ ...formData, referralSource: value })
+              }
               required
             >
-              <option value="">Select Source</option>
-              <option value="social">Social Media</option>
-              <option value="friend">Friend/Family</option>
-              <option value="search">Search Engine</option>
-              <option value="advertisement">Advertisement</option>
-              <option value="other">Other</option>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Source" />
+              </SelectTrigger>
+              <SelectContent>
+                {[
+                  { value: "social", label: "Social Media" },
+                  { value: "friend", label: "Friend/Family" },
+                  { value: "search", label: "Search Engine" },
+                  { value: "advertisement", label: "Advertisement" },
+                  { value: "other", label: "Other" },
+                ].map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
@@ -156,7 +209,9 @@ export default function RegistrationForm() {
               id="email"
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               required
             />
           </div>
@@ -168,7 +223,9 @@ export default function RegistrationForm() {
                 id="password"
                 type="password"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 required
               />
             </div>
@@ -178,15 +235,19 @@ export default function RegistrationForm() {
                 id="confirmPassword"
                 type="password"
                 value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
                 required
               />
             </div>
           </div>
 
-          <Button type="submit" className="w-full">Continue</Button>
+          <Button type="submit" className="w-full">
+            Continue
+          </Button>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
