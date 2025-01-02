@@ -1,24 +1,33 @@
-"use client"
+"use client";
 
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Select } from "@/components/ui/select"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface PersonalInfoProps {
   formData: {
-    firstName: string
-    lastName: string
-    gender: string
-    dateOfBirth: string
-  }
-  onChange: (field: string, value: string) => void
+    firstName: string;
+    lastName: string;
+    gender: string;
+    dateOfBirth: string;
+  };
+  onChange: (field: string, value: string) => void;
 }
 
-export default function PersonalInfo({ formData, onChange }: PersonalInfoProps) {
+export default function PersonalInfo({
+  formData,
+  onChange,
+}: PersonalInfoProps) {
   return (
     <div className="space-y-4">
       <h2 className="text-lg font-semibold">Personal Information</h2>
-      
+
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Label htmlFor="firstName">First Name</Label>
@@ -43,15 +52,24 @@ export default function PersonalInfo({ formData, onChange }: PersonalInfoProps) 
       <div>
         <Label htmlFor="gender">Gender</Label>
         <Select
-          id="gender"
           value={formData.gender}
           onValueChange={(value) => onChange("gender", value)}
           required
         >
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Gender" />
+          </SelectTrigger>
+          <SelectContent>
+            {[
+              { value: "male", label: "Male" },
+              { value: "female", label: "Female" },
+              { value: "other", label: "Other" },
+            ].map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
       </div>
 
@@ -66,5 +84,5 @@ export default function PersonalInfo({ formData, onChange }: PersonalInfoProps) 
         />
       </div>
     </div>
-  )
+  );
 }
