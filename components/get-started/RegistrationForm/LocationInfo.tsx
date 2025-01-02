@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Select } from "@/components/ui/select"
-import { countries } from "@/lib/countries"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { countries } from "@/lib/countries";
 
 interface LocationInfoProps {
   formData: {
-    country: string
-    city: string
-  }
-  onChange: (field: string, value: string) => void
+    country: string;
+    city: string;
+  };
+  onChange: (field: string, value: string) => void;
 }
 
 export function LocationInfo({ formData, onChange }: LocationInfoProps) {
@@ -19,17 +25,21 @@ export function LocationInfo({ formData, onChange }: LocationInfoProps) {
       <div className="space-y-2">
         <Label htmlFor="country">Country</Label>
         <Select
-          id="country"
           value={formData.country}
           onValueChange={(value) => onChange("country", value)}
           required
         >
-          <option value="">Select Country</option>
-          {countries.map((country) => (
-            <option key={country.code} value={country.code}>
-              {country.name}
-            </option>
-          ))}
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Country" />
+          </SelectTrigger>
+          <SelectContent>
+            {countries.map((country) => (
+              <SelectItem key={country.code} value={country.code}>
+                <span className="text-lg">{country.flag}</span>
+                <span>{country.name}</span>
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
       </div>
       <div className="space-y-2">
@@ -42,5 +52,5 @@ export function LocationInfo({ formData, onChange }: LocationInfoProps) {
         />
       </div>
     </div>
-  )
+  );
 }
