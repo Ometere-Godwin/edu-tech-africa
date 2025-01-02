@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { countries } from "@/lib/countries";
+import { countries, Country } from "@/lib/countries";
 
 const areas = [
   { id: "web-dev", name: "Web Development" },
@@ -19,7 +19,9 @@ const areas = [
   { id: "data-science", name: "Data Science" },
   { id: "ai-ml", name: "AI & Machine Learning" },
   { id: "cyber-security", name: "Cyber Security" },
-];
+] as const;
+
+type Area = (typeof areas)[number];
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState({
