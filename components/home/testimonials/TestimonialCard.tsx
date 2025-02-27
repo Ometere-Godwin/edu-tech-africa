@@ -1,12 +1,13 @@
-import { Star } from "lucide-react"
+import { Star } from "lucide-react";
+import Image from "next/image";
 
 interface TestimonialCardProps {
-  name: string
-  role: string
-  company: string
-  image: string
-  content: string
-  rating: number
+  name: string;
+  role: string;
+  company: string;
+  image: string;
+  content: string;
+  rating: number;
 }
 
 export default function TestimonialCard({
@@ -15,19 +16,23 @@ export default function TestimonialCard({
   company,
   image,
   content,
-  rating
+  rating,
 }: TestimonialCardProps) {
   return (
     <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
       <div className="flex items-center mb-4">
-        <img
+        <Image
           src={image}
           alt={name}
-          className="w-12 h-12 rounded-full object-cover"
+          className="w-16 h-16 rounded-full object-cover"
+          height={64}
+          width={64}
         />
         <div className="ml-4">
           <h3 className="font-semibold text-gray-900">{name}</h3>
-          <p className="text-sm text-gray-600">{role} at {company}</p>
+          <p className="text-sm text-gray-600">
+            {role} at {company}
+          </p>
         </div>
       </div>
       <div className="flex mb-4">
@@ -37,5 +42,5 @@ export default function TestimonialCard({
       </div>
       <p className="text-gray-600">{content}</p>
     </div>
-  )
+  );
 }

@@ -7,29 +7,33 @@ interface Company {
 }
 
 const companies: Company[] = [
-  { name: "Microsoft", logo: "/images/companies/microsoft.png" },
-  { name: "Google", logo: "/images/companies/google.png" },
-  { name: "Apple", logo: "/images/companies/apple.png" },
-  { name: "Amazon", logo: "/images/companies/amazon.png" },
-  { name: "Meta", logo: "/images/companies/meta.png" },
+  { name: "Microsoft", logo: "/assests/etranzact.jpg" },
+  { name: "Google", logo: "/assests/Mastercard-icon.png" },
+  { name: "Apple", logo: "/assests/glo-icon.png" },
+  { name: "Amazon", logo: "/assests/gtb-icon.png" },
+  { name: "Meta", logo: "/assests/mtn-new-logo.svg " },
+  { name: "Meta", logo: "/assests/proconnect.jpg " },
+  { name: "Meta", logo: "/assests/union-bank.png " },
+  { name: "Meta", logo: "/assests/vanguard-icon.jpg" },
+  { name: "Meta", logo: "/assests/sportybet.jpg " },
   // Add more companies as needed
 ];
 
 function CompanyLogo({ name, logo }: Company) {
   return (
     <div className="flex flex-col items-center mx-8 group">
-      <div className="w-24 h-24 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm transition-all duration-200 group-hover:shadow-md">
+      <div className="w-24 h-24 flex items-center justify-center  transition-all duration-200 ">
         <Image
           src={logo}
           alt={`${name} logo`}
-          width={64}
-          height={64}
-          className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+          width={150}
+          height={150}
+          className="w-full h-full object-contain transition-opacity"
         />
       </div>
-      <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+      {/* <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
         {name}
-      </span>
+      </span> */}
     </div>
   );
 }
@@ -47,7 +51,7 @@ export default function TrustedCompanies() {
           </p>
         </div>
 
-        <InfiniteScroll direction="left" speed="slow" className="py-8">
+        <InfiniteScroll direction="left" speed="fast" className="py-8">
           {companies.map((company) => (
             <CompanyLogo
               key={company.name}
