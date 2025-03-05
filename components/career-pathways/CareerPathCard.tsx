@@ -60,11 +60,8 @@ export function CareerPathCard({
           </ul>
         </div>
 
-        <Button
-          className="w-full"
-          onClick={() => router.push(`/courses?path=${id}`)}
-        >
-          View Courses
+        <Button className="w-full" onClick={() => router.push(`/course/${id}`)}>
+          View Course Details
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>

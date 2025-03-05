@@ -3,6 +3,7 @@ import CourseCard from "@/components/courses/CourseCard";
 export default function CoursesPage() {
   const courses = [
     {
+      id: "full-stack",
       title: "Full-Stack",
       description:
         "Master modern web development with React, Node.js, and MongoDB",
@@ -15,6 +16,7 @@ export default function CoursesPage() {
       category: "Web Development",
     },
     {
+      id: "backend-engineering",
       title: "Backend Engineering",
       description: "Understanding security principles and best practices",
       image:
@@ -26,6 +28,7 @@ export default function CoursesPage() {
       category: "Engineering",
     },
     {
+      id: "frontend",
       title: "Frontend ",
       description: "Build iOS and Android apps with React Native",
       image:
@@ -37,6 +40,7 @@ export default function CoursesPage() {
       category: "Web Development",
     },
     {
+      id: "data-analytics-engineering",
       title: "Data Analytics Engineering",
       description: "Learn Python, statistics, and machine learning basics",
       image:
@@ -48,6 +52,7 @@ export default function CoursesPage() {
       category: "Data Science",
     },
     {
+      id: "ui-ux-design",
       title: "UI/UX Design",
       description: "Learn design principles and tools like Figma",
       image:
@@ -59,6 +64,7 @@ export default function CoursesPage() {
       category: "Design",
     },
     {
+      id: "motion-graphics-design-and-production",
       title: "Motion Grapgics/ Design and Production",
       description: "Understanding security principles and best practices",
       image:
@@ -70,37 +76,44 @@ export default function CoursesPage() {
       category: "Security",
     },
     {
+      id: "cloud-computing",
       title: "Cloud Computing",
       description: "Master AWS, Azure, and cloud architecture",
       image:
         "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop",
       duration: "10 weeks",
-      students: 950,
-      rating: 4.6,
-      price: "₦430,000",
+      students: 0,
+      rating: 0,
+      price: "Coming Soon",
       category: "Cloud Computing",
+      disabled: true,
     },
     {
+      id: "mobile-app-development",
       title: "Mobile App Development ",
       description: "Build iOS and Android apps with React Native",
       image:
         "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
       duration: "8 weeks",
-      students: 1200,
-      rating: 4.9,
-      price: "₦385,000",
+      students: 0,
+      rating: 0,
+      price: "Coming Soon",
       category: "Web Development",
+      disabled: true,
     },
     {
-      title: "Cybersecurity ",
-      description: "Build iOS and Android apps with React Native",
+      id: "cybersecurity",
+      title: "Cybersecurity (Coming Soon)",
+      description:
+        "Advanced cybersecurity training and certification preparation",
       image:
         "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
-      duration: "8 weeks",
-      students: 1200,
-      rating: 4.9,
-      price: "₦450,000",
-      category: "Web Development",
+      duration: "Coming Soon",
+      students: 0,
+      rating: 0,
+      price: "Coming Soon",
+      category: "Cybersecurity",
+      disabled: true,
     },
   ];
 
