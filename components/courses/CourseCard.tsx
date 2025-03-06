@@ -2,7 +2,7 @@
 
 import { Clock, Users, Star } from "lucide-react";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface CourseCardProps {
   id: string;
@@ -29,12 +29,6 @@ export default function CourseCard({
   category,
   disabled,
 }: CourseCardProps) {
-  const router = useRouter();
-
-  const handleEnroll = () => {
-    router.push(`/course/${id}`);
-  };
-
   return (
     <div
       className={`bg-white rounded-lg shadow-md overflow-hidden ${
@@ -64,14 +58,19 @@ export default function CourseCard({
         </div>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-gray-900">{price}</span>
-          <Button
-            variant="purple"
-            onClick={handleEnroll}
-            disabled={disabled}
-            className={disabled ? "bg-gray-400 hover:bg-gray-400" : ""}
-          >
-            {disabled ? "Coming Soon" : "Enroll Now"}
-          </Button>
+          {disabled ? (
+            <Button
+              variant="purple"
+              disabled
+              className="bg-gray-400 hover:bg-gray-400"
+            >
+              Coming Soon
+            </Button>
+          ) : (
+            <Link href={`/course/${id}`}>
+              <Button variant="purple">Enroll Now</Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
