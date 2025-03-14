@@ -71,7 +71,7 @@ export const courses: Course[] = [
       "Work with modern development tools"
     ],
     prerequisites: [
-      "Basic understanding of HTML, CSS, and JavaScript",
+      "Basic understanding of HTML, CSS and JavaScript",
       "Familiarity with programming concepts",
       "Computer with internet connection",
       "Dedication to learn and practice"
