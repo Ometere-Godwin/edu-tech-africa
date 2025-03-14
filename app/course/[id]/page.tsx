@@ -5,11 +5,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // UI Components
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Icons
-import { Clock, Users, Star } from "lucide-react";
+import { Clock, Users, Star, BookOpen, Lightbulb, UserCheck, ClipboardCheck } from "lucide-react";
 
 // Data
 import { Course, courses } from "@/lib/courses";
@@ -100,16 +99,6 @@ function ContentSkeleton() {
               ))}
             </div>
           </div>
-
-          {/* Learning Outcomes Skeleton */}
-          {/* <div className="bg-white rounded-lg shadow-md p-6">
-            <Skeleton className="h-8 w-1/3 mb-4" />
-            <div className="space-y-3">
-              {[1, 2, 3, 4].map((outcome) => (
-                <Skeleton key={outcome} className="h-4 w-full" />
-              ))}
-            </div>
-          </div> */}
         </div>
 
         {/* Sidebar Skeleton */}
@@ -226,14 +215,20 @@ function CourseContent({ course }: { course: Course }) {
           {/* Course Curriculum */}
           {course.curriculum && (
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Course Curriculum</h2>
+              <div className="flex items-center gap-3 mb-6">
+                <BookOpen className="w-6 h-6 text-purple-600" />
+                <h2 className="text-2xl font-semibold text-gray-900">Course Curriculum</h2>
+              </div>
               <div className="space-y-6">
                 {course.curriculum.map((section, index) => (
-                  <div key={index}>
+                  <div key={index} className=" border-[2px] border-purple-100 rounded-lg p-4">
                     <h3 className="text-xl font-medium text-gray-800 mb-3">{section.title}</h3>
                     <ul className="space-y-2">
                       {section.topics.map((topic, topicIndex) => (
-                        <li key={topicIndex} className="text-gray-600">{topic}</li>
+                        <li key={topicIndex} className="text-gray-600 flex items-start gap-2">
+                          <span className="text-purple-600 mt-1.5">•</span>
+                          <span>{topic}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -248,7 +243,10 @@ function CourseContent({ course }: { course: Course }) {
           {/* What You'll Learn Section */}
           {course.learningOutcomes && (
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">What You&apos;ll Learn</h2>
+              <div className="flex items-center gap-3 mb-4">
+                <Lightbulb className="w-7 h-7 text-purple-600" />
+                <h2 className="text-2xl font-semibold text-gray-900">What You&apos;ll Learn</h2>
+              </div>
               <ul className="space-y-3">
                 {course.learningOutcomes.map((outcome, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -263,10 +261,16 @@ function CourseContent({ course }: { course: Course }) {
           {/* Prerequisites Section */}
           {course.prerequisites && (
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Prerequisites</h2>
+              <div className="flex items-center gap-3 mb-4">
+                <ClipboardCheck className="w-7 h-7 text-purple-600" />
+                <h2 className="text-2xl font-semibold text-gray-900">Prerequisites</h2>
+              </div>
               <ul className="list-disc list-inside space-y-2 text-gray-600 marker:text-purple-600">
                 {course.prerequisites.map((prerequisite, index) => (
-                  <li key={index}>{prerequisite}</li>
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-purple-600 mt-1">•</span>
+                    <span className="flex-1">{prerequisite}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -275,7 +279,11 @@ function CourseContent({ course }: { course: Course }) {
           {/* Instructors Section */}
           {course.instructors && (
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your Instructors</h2>
+              <div className="flex items-center gap-3 mb-4">
+                <UserCheck className="w-7 h-7 text-purple-600" />
+                <h2 className="text-2xl font-semibold text-gray-900">Your Instructors</h2>
+              </div>
+              
               <div className="space-y-6">
                 {course.instructors.map((instructor, index) => (
                   <div key={index} className="flex items-start gap-4">
@@ -301,7 +309,7 @@ function CourseContent({ course }: { course: Course }) {
           <div className="bg-white rounded-lg shadow-md p-6">
             <Link 
               href={`/get-started?courseId=${encodeURIComponent(course.id)}`}
-              className="block w-full bg-purple-600 text-white text-center py-3 px-4 rounded-md hover:bg-emerald-700 transform hover:scale-[1.02] transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
+              className="block w-full bg-purple-600 text-white text-center py-3 px-4 rounded-md  transform hover:scale-[1.02] transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
             >
               Enroll Now for {course.price ? `$${course.price.toLocaleString()}` : 'Free'}
             </Link>
