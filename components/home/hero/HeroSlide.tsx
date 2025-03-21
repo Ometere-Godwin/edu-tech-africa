@@ -57,7 +57,7 @@ export default function HeroSlide({
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
-              variant="outline" 
+              variant="default" 
               size="lg" 
               className="text-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"
               onClick={() => router.push('/courses')}

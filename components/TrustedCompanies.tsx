@@ -11,11 +11,11 @@ const companies: Company[] = [
   { name: "Google", logo: "/assests/Mastercard-icon.png" },
   { name: "Apple", logo: "/assests/glo-icon.png" },
   { name: "Amazon", logo: "/assests/gtb-icon.png" },
-  { name: "Meta", logo: "/assests/mtn-new-logo.svg " },
+  { name: "mtn", logo: "/assests/mtn.png " },
   { name: "Meta", logo: "/assests/proconnect.jpg " },
   { name: "Meta", logo: "/assests/union-bank.png " },
   { name: "Meta", logo: "/assests/vanguard-icon.jpg" },
-  { name: "Meta", logo: "/assests/sportybet.jpg " },
+  { name: "sporty", logo: "/assests/sporty.png " },
 ];
 
 function CompanyLogo({ name, logo }: Company) {
