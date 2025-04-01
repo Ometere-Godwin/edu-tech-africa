@@ -16,8 +16,14 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/courses", label: "Courses" },
-    { href: "/career-pathways", label: "Career Pathways" },
+    // { href: "/career-pathways", label: "Career Pathways" },
     { href: "/about", label: "About" },
+    {
+      href: "https://techathon-xi.vercel.app/",
+      label: "Techathon",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -36,10 +42,12 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, label, target, rel }) => (
               <Link
                 key={href}
                 href={href}
+                target={target}
+                rel={rel}
                 className={cn(
                   "text-gray-700 hover:text-purple-600",
                   isActive(href) && "text-purple-600 font-medium"
@@ -48,12 +56,13 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-            <Button
+            {/* <Button
               variant="purple"
               onClick={() => router.push("/get-started")}
             >
               Get Started
-            </Button>
+            </Button> */}
+            <Link href="/get-started">Get Started</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,10 +86,12 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden absolute top-16 inset-x-0 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, label, target, rel }) => (
               <Link
                 key={href}
                 href={href}
+                target={target}
+                rel={rel}
                 onClick={() => setIsOpen(false)}
                 className={cn(
                   "block px-3 py-2 text-gray-700 hover:text-purple-600",

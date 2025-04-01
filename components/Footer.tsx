@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="font-bold text-xl">TechEdu Africa</span>
             </div>
             <p className="text-gray-400">
-              Empowering Africa's next generation of tech leaders through quality education.
+              Empowering Africa&apos;s next generation of tech leaders through quality education.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-purple-400">
